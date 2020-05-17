@@ -1,22 +1,23 @@
 import Layout from '../components/Layout';
-import { useEffect, useState } from "react";
+import fetch from 'isomorphic-unfetch'
 
-export default function About() {
-    const [data, setData] = useState([]);
+function About({ user }) {
 
-    useEffect(() => {
-        fetch('https://api.github.com/users/reedbarger')
-        .then(res => res.json())
-        .then(data => {
-            setData(data);
-        }) 
-    });
+    return (<Layout title="About">
+        {JSON.stringify(user)}
+        <p> A javascript programmer</p>
+        <img src="/javascript_logo.png" alt="Javascript" height= "200px" />
+    </Layout>)
+}
 
-    return (
-        <Layout title="About">
-            {JSON.stringify(data)}
-            <p> A javascript programmer</p>
-            <img src="/javascript_logo.png" alt="Javascript" height= "200px" />
-        </Layout>
-    )
-};
+export async function getStaticProps() {
+    const res = await fetch('https://api.github.com/repos/zeit/next.js')
+    const user = await res.json()
+    return { 
+        props: {
+            user
+        }
+    }
+}
+  
+  export default About
