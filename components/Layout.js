@@ -1,6 +1,24 @@
 import Link from 'next/link';
+import Head from 'next/head';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+
+
+Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+    console.log('start');
+}); 
+Router.events.on('routeChangeComplete', () => {
+    console.log('complete');
+    NProgress.done();
+});
+
 export default ({children, title}) => (
     <div className="root">
+        <Head>
+            <title>NextPortfolio</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" />
+        </Head>
         <header>
             <Link href="/"><a>Home</a></Link>
             <Link href="/about"><a>About</a></Link>
