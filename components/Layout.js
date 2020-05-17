@@ -17,7 +17,7 @@ export default ({children, title}) => (
     <div className="root">
         <Head>
             <title>NextPortfolio</title>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" />
+           
         </Head>
         <header>
             <Link href="/"><a>Home</a></Link>
@@ -27,7 +27,7 @@ export default ({children, title}) => (
         <h1>{title}</h1>
         {children}
         <footer>&copy; {new Date().getFullYear()}</footer>
-        <style jsx>{`
+        <style global jsx>{`
             .root {
                 display: flex;
                 justify-content: center;
