@@ -17,7 +17,7 @@ export async function getStaticProps() {
     const res = await fetch('https://api.github.com/users/reedbarger')
     const statusCode = res.status > 200 ? res.status : false;
     const user = await res.json()
-    console.log(statusCode);
+
     return { 
         props: {
             user,
